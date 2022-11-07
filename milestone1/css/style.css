@@ -1,3 +1,5 @@
+/*** GENERAL ***/
+
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +9,64 @@
 body {
   font-family: 'Lato', sans-serif;
   overflow: hidden;
+}
+
+/** Utilities **/
+
+/* Flex */
+
+.d-flex{
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+/*** MAIN WRAPPER ***/
+
+.main-wrapper {
+  height: 100vh;
+}
+
+/** Background **/
+
+.background {
+  height: 100%;
+}
+
+.background div:first-child {
+  height: 150px;
+  background-color: #3E9287;
+}
+
+.background div:last-child {
+  height: calc(100% - 150px);
+  background-color: #BEBDB7;
+}
+
+/** Application **/
+
+.application-wrapper {
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+
+  padding: 25px;
+}
+
+.application {
+  width: 90%;
+  min-width: 768px;
+  max-width: 1100px;
+  height: 100%;
+
+  /* debug */
+  background-color: deeppink;
 }
