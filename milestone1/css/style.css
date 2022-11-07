@@ -1,3 +1,8 @@
+:root {
+  --background-heigth-top: 15vh;
+  --user-area-width: 40%;
+}
+
 /*** GENERAL ***/
 
 * {
@@ -11,16 +16,34 @@ body {
   overflow: hidden;
 }
 
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+ul {
+  list-style: none;
+}
+
 /** Utilities **/
 
 /* Flex */
 
-.d-flex{
+.d-flex {
   display: flex;
 }
 
 .justify-content-center {
   justify-content: center;
+}
+
+.justify-content-between{
+  justify-content: space-between;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
 }
 
 .align-items-center {
@@ -31,42 +54,257 @@ body {
 
 .main-wrapper {
   height: 100vh;
+  background: linear-gradient(#01A884 var(--background-heigth-top), #DDDBD3 var(--background-heigth-top), #D4DBDC);
 }
 
-/** Background **/
-
-.background {
-  height: 100%;
-}
-
-.background div:first-child {
-  height: 150px;
-  background-color: #3E9287;
-}
-
-.background div:last-child {
-  height: calc(100% - 150px);
-  background-color: #BEBDB7;
-}
-
-/** Application **/
-
-.application-wrapper {
-  position: absolute;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-
-  padding: 25px;
-}
+/********** Application **********/
 
 .application {
   width: 90%;
   min-width: 768px;
-  max-width: 1100px;
-  height: 100%;
+  max-width: 1300px;
+  height: 95%;
+}
 
-  /* debug */
-  background-color: deeppink;
+/*** USER AREA ***/
+
+.user-area {
+  width: var(--user-area-width);
+  background-color: white; 
+  border-right: 1px solid #D3DBDC; 
+}
+
+/* User profile */
+
+.user-profile {
+  height: 70px;
+  background-color: #EAEAEA;
+
+  padding: 0 5px 0 15px;
+}
+
+.user-data {
+  width: 80%;
+}
+
+.profile-img {
+  width: 60px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+
+  margin-right: 8px;
+}
+
+.user-menu {
+  width: 30%;
+  padding: 0 8px;
+}
+
+.user-menu > * {
+  color: #B1B1B1;
+  font-size: 1.3rem;
+
+  padding: 0 8px;
+}
+
+/* Suggestion */
+
+.suggestion {
+  height: 95px;
+  background-color: #9CDAF8;
+  border-right: 1px solid #9CDAF8;
+
+  padding-left: 25px;
+}
+
+.suggestion-icon {
+  width: 60px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+
+  background-color: #F3FBFE;
+  color: #9CDAF8;
+  font-size: 1.5rem;
+
+  margin-right: 8px;
+}
+
+.suggestion-text a {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+/* Input area */
+
+.input-area {
+  height: 40px;
+  background-color: #f1f0f0;
+
+  padding: 0 5px;
+}
+
+.input-area input,
+.input-area i {
+  height: 30px;
+}
+
+.input-area i {
+  display: inline-block;
+  width: 50px;
+  line-height: 32px;
+  color: grey;
+  background-color: white;
+  padding-left: 10px;
+}
+
+.input-area input{
+  width: calc(100% - 50px);
+  border: none;
+}
+
+/* List chats */
+
+.list-chats {
+  height: calc( 100% - 40px - 80px - 95px);
+  overflow-y: scroll;
+}
+
+.list-chats ul {
+  padding-right: 10px;
+}
+
+.chat-info {
+  height: 100px;
+  border-bottom: 1px solid #F3FBFE; 
+}
+
+.chat-avatar {
+  width: 70px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.chat-data {
+  width: 100%;
+  padding-top: 10px;
+}
+
+.chat-data span {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.chat-data .sending-time {
+  padding-right: 10px;
+  font-size: 0.7rem;
+  color: grey;
+}
+
+.chat-data p {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Chat area */
+
+.chat-area {
+  width: calc(100% - var(--user-area-width));
+
+}
+
+.main-chat {
+  height: calc(100% - 80px - 80px);
+  background-image: url('../../assets/img/mine.jpg');
+  padding: 30px 50px 0;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+
+.message div {
+  width: 75%;
+  max-width: fit-content;
+  
+  padding: 25px 20px;
+  border-radius: 10px;
+
+  position: relative;
+}
+
+.message span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  font-size:0.6rem;
+  color: lightgray;
+  padding: 5px 10px;
+}
+.message.sent {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message.sent div {
+  background-color: #DCF5BF;
+} 
+
+.message.received div {
+  background-color: white;
+}
+
+
+
+
+
+
+
+
+
+.input-chat-area {
+  height: 80px;
+  background-color: #EAEAEA;
+}
+
+.emoji, .voice-message {
+  width: 75px;
+}
+
+.input-chat {
+  width: calc(100% - 75px - 75px)
+}
+
+.input-chat input {
+  width: 100%;
 }

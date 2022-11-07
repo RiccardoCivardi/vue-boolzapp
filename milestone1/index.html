@@ -30,18 +30,163 @@
 </head>
 <body>
 
-  <div id="app" class="main-wrapper">
+  <div id="app" class="main-wrapper d-flex justify-content-center align-items-center">
 
-    <div class="background">
+    <div class="application d-flex">
+    
+      <div class="user-area">
 
-      <div></div>
-      <div></div>
+        <div class="user-profile d-flex">
 
-    </div>
+          <div class="user-data d-flex align-items-center">
 
-    <div class="application-wrapper d-flex justify-content-center align-items-center">
+            <div class="profile-img">
+              <img :src="pathImg + user.avatar + '.jpg'" :alt="user.name + ' ' + 'picture'">
+            </div>
+            
+            <span>{{user.name}}</span>
+            
+          </div>
 
-      <div class="application"></div>
+          <div class="user-menu d-flex justify-content-end align-items-center">
+
+            <i class="fa-solid fa-circle-notch"></i>
+            <i class="fa-solid fa-message"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+
+          </div>
+          
+        </div>
+
+        <div class="suggestion d-flex align-items-center">
+
+          <div class="suggestion-icon d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-bell-slash"></i>
+          </div>
+           
+          <div class="suggestion-text">
+
+            <p>Ricevi notifiche di nuovi messaggi</p>
+            <a href="#">Attiva notifiche descktop</a>
+
+          </div>
+
+        </div>
+
+        <div class="input-area d-flex align-items-center">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Cerca o inizia una nuova chat">
+
+        </div>
+
+        <div class="list-chats">
+
+          <ul>
+
+            <li
+             v-for="contact in contacts"
+             class="chat-info d-flex align-items-center">
+
+              <div class="chat-avatar">
+                <img :src="pathImg + contact.avatar + '.jpg'" :alt="contact.name + ' ' + 'picture'">
+              </div>
+
+              <div class="chat-data">
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <span>{{contact.name}}</span>
+                  <span class="sending-time">{{contact.messages[contact.messages.length-1].date }}</span>
+                </div>
+                
+                <p>{{contact.messages[contact.messages.length-1].message}}</p>
+
+              </div>
+
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="chat-area">
+
+        <div class="user-profile d-flex">
+
+          <div class="user-data d-flex align-items-center">
+
+            <div class="profile-img">
+              <img :src="pathImg + user.avatar + '.jpg'" :alt="user.name + ' ' + 'picture'">
+            </div>
+            
+            <div>
+
+              <span>{{user.name}}</span>
+              <p>Ultimo accesso oggi alle 12:00</p>
+
+            </div>
+            
+          </div>
+
+          <div class="user-menu d-flex justify-content-end align-items-center">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-paperclip"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+
+          </div>
+          
+        </div>
+
+        <div class="main-chat">
+
+          <ul>
+
+            <li class="message sent">
+              <div>
+                <p>Hai portato a spasso il cane?</p>
+                <span>15:30</span>
+              </div>
+            </li>
+
+            <li class="message sent">
+              <div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi odio eveniet nesciunt voluptatibus minima? Nulla error sit rem cum enim!</p>
+                <span>15:30</span>
+              </div>
+            </li>
+
+            <li class="message received">
+              <div>
+                <p>Ricordati di stendere i panni</p>
+                <span>15:30</span>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div class="input-chat-area d-flex">
+
+          <div class="emoji d-flex justify-content-center align-items-center">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+
+          <div class="input-chat d-flex align-items-center">
+            <input type="text" placeholder="Scrivi un messaggio">
+          </div>
+
+          <div class="voice-message d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
