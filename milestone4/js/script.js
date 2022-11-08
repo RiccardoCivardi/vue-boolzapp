@@ -8,6 +8,7 @@ createApp({
       pathImg: '../assets/img/avatar',
       activeChat: 0,
       newMessage: '',
+      search: '',
      
       user: {
         name: 'Riccardo',
@@ -214,8 +215,7 @@ createApp({
       this.contacts[this.activeChat].messages.push(message);
 
     }
-
-
+    
   },
 
   mounted(){

@@ -80,7 +80,11 @@
         <div class="input-area d-flex align-items-center">
 
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Cerca o inizia una nuova chat">
+          <input 
+           type="text" 
+           placeholder="Cerca o inizia una nuova chat"
+           v-model.trim="search"
+           >
 
         </div>
 
@@ -91,6 +95,7 @@
 
             <li
              v-for="(contact, index) in contacts"
+             v-show="contact.name.toLowerCase().includes(search.toLowerCase())"
              :class="{'active': index === activeChat}"
              @click="activeChat = index"
              class="chat-info d-flex">
@@ -104,7 +109,7 @@
               <div class="chat-data">
 
                 <div class="d-flex justify-content-between align-items-center">
-                  <span>{{contact.name}}</span>
+                  <span class="name">{{contact.name}}</span>
                   <span class="sending-time">{{contact.messages[contact.messages.length-1].date }}</span>
                 </div>
                 
@@ -183,7 +188,7 @@
             <input 
               type="text" 
               placeholder="Scrivi un messaggio"
-              v-model="newMessage"
+              v-model.trim="newMessage"
               @keydown.enter="addNewMessage()">
           </div>
 
