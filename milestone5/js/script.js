@@ -202,7 +202,9 @@ createApp({
 
       this.newMessage ='';
 
-      setTimeout(this.addReply, 5000);
+      setTimeout(this.addReply, 1000);
+
+      setTimeout(this.autoScroll, 100);
 
     },
 
@@ -214,6 +216,9 @@ createApp({
       }
 
       this.contacts[this.activeChat].messages.push(message);
+
+      setTimeout(this.autoScroll, 100);
+      
 
     },
 
@@ -233,6 +238,13 @@ createApp({
       } else {
         this.contacts[this.activeChat].messages[index].isHidden =! this.contacts[this.activeChat].messages[index].isHidden
       }
+    },
+
+    autoScroll() {
+      const el = document.querySelector('.main-chat');
+      
+      el.scrollTop = el.scrollHeight;
+     
     }
 
   },
