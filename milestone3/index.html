@@ -180,7 +180,11 @@
           </div>
 
           <div class="input-chat d-flex align-items-center">
-            <input type="text" placeholder="Scrivi un messaggio">
+            <input 
+              type="text" 
+              placeholder="Scrivi un messaggio"
+              v-model="newMessage"
+              @keydown.enter="addNewMessage()">
           </div>
 
           <div class="voice-message d-flex justify-content-center align-items-center">

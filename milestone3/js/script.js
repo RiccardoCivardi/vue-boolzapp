@@ -7,6 +7,7 @@ createApp({
 
       pathImg: '../assets/img/avatar',
       activeChat: 0,
+      newMessage: '',
      
       user: {
         name: 'Riccardo',
@@ -187,7 +188,34 @@ createApp({
   },
 
   methods:{
-  
+    
+    addNewMessage() {
+      const message = {
+        date: '10/01/2020 15:50:00',
+        message: this.newMessage,
+        status: 'sent'
+      }
+      
+      this.contacts[this.activeChat].messages.push(message);
+
+      this.newMessage ='';
+
+      setTimeout(this.addReply, 2000);
+
+    },
+
+    addReply(){
+      const message = {
+        date: '10/01/2020 15:50:00',
+        message: 'ok',
+        status: 'received'
+      }
+
+      this.contacts[this.activeChat].messages.push(message);
+
+    }
+
+
   },
 
   mounted(){
