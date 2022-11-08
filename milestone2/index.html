@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
+
+  <!-- FONT AAWESOME -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css' integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==' crossorigin='anonymous'/>
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- MAIN STYLE -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- VUE JS -->
+  <script src="https://unpkg.com/vue@3"></script>
+  
+  <!-- SCRIPT JS -->
+  <script defer src="js/script.js"></script>
+  
+  <title>Boolzap</title>
+
+</head>
+<body>
+
+  <div id="app" class="d-flex justify-content-center align-items-center">
+
+    <div class="application d-flex">
+    
+      <!-- USER AREA -->
+      <div class="user-area">
+
+        <!-- User profile -->
+        <div class="user-profile d-flex">
+
+          <div class="user-data d-flex align-items-center">
+
+            <div class="profile-img">
+              <img :src="pathImg + user.avatar + '.jpg'" :alt="user.name + ' ' + 'picture'">
+            </div>
+            
+            <span>{{user.name}}</span>
+            
+          </div>
+
+          <div class="user-menu d-flex justify-content-end align-items-center">
+
+            <i class="fa-solid fa-circle-notch"></i>
+            <i class="fa-solid fa-message"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+
+          </div>
+          
+        </div>
+
+        <!-- Suggestion -->
+        <div class="suggestion d-flex align-items-center">
+
+          <div class="suggestion-icon d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-bell-slash"></i>
+          </div>
+           
+          <div class="suggestion-text">
+
+            <p>Ricevi notifiche di nuovi messaggi</p>
+            <a href="#">Attiva notifiche descktop</a>
+
+          </div>
+
+        </div>
+
+        <!-- Input area -->
+        <div class="input-area d-flex align-items-center">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Cerca o inizia una nuova chat">
+
+        </div>
+
+        <!-- List chat -->
+        <div class="list-chats">
+
+          <ul>
+
+            <li
+             v-for="contact in contacts"
+             class="chat-info d-flex">
+
+              <div class="chat-avatar d-flex justify-content-center align-items-center">
+               <div class="avatar">
+                 <img :src="pathImg + contact.avatar + '.jpg'" :alt="contact.name + ' ' + 'picture'">
+               </div>
+              </div>
+
+              <div class="chat-data">
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <span>{{contact.name}}</span>
+                  <span class="sending-time">{{contact.messages[contact.messages.length-1].date }}</span>
+                </div>
+                
+                <p>{{contact.messages[contact.messages.length-1].message}}</p>
+
+              </div>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+      <!-- /USER AREA -->
+
+      <!-- CHAT AREA -->
+      <div class="chat-area">
+
+        <!-- Contact profile (stesso classi dell'user-profile) -->
+        <div class="user-profile d-flex">
+
+          <div class="user-data d-flex align-items-center">
+
+            <div class="profile-img">
+              <img :src="pathImg + user.avatar + '.jpg'" :alt="user.name + ' ' + 'picture'">
+            </div>
+            
+            <div>
+
+              <span>{{user.name}}</span>
+              <p>Ultimo accesso oggi alle 12:00</p>
+
+            </div>
+            
+          </div>
+
+          <div class="user-menu d-flex justify-content-end align-items-center">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-paperclip"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+
+          </div>
+          
+        </div>
+
+        <!-- Main chat -->
+        <div class="main-chat">
+
+          <ul>
+
+            <li class="message sent">
+              <div>
+                <p>Hai portato a spasso il cane?</p>
+                <span>15:30</span>
+              </div>
+            </li>
+
+            <li class="message received">
+              <div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi odio eveniet nesciunt voluptatibus minima? Nulla error sit rem cum enim!</p>
+                <span>15:30</span>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <!-- Input chat area -->
+        <div class="input-chat-area d-flex">
+
+          <div class="emoji d-flex justify-content-center align-items-center">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+
+          <div class="input-chat d-flex align-items-center">
+            <input type="text" placeholder="Scrivi un messaggio">
+          </div>
+
+          <div class="voice-message d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /CHAT AREA -->
+
+    </div>
+
+  </div>
+  
+</body>
+</html>
