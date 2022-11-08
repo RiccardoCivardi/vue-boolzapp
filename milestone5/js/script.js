@@ -223,8 +223,18 @@ createApp({
       const now = DateTime.now().toFormat("dd'/'LL'/'y' 'HH':'mm':'ss");
 
       return now;
+    },
+
+    showOptions(index) {
+      
+      if(!this.contacts[this.activeChat].messages[index].isHidden) {
+        
+        this.contacts[this.activeChat].messages[index].isHidden = true;
+      } else {
+        this.contacts[this.activeChat].messages[index].isHidden =! this.contacts[this.activeChat].messages[index].isHidden
+      }
     }
-    
+
   },
 
   mounted(){

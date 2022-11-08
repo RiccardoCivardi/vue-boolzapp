@@ -274,7 +274,7 @@ i {
   background-repeat: no-repeat;
   background-size: cover;
 
-  padding: 30px 50px 0;
+  padding: 50px 80px 0;
   overflow-y: scroll;
 }
 
@@ -282,7 +282,7 @@ i {
   margin-bottom: 10px;
 }
 
-.message div {
+.message .message-card {
   width: 75%;
   max-width: fit-content;
   
@@ -292,14 +292,29 @@ i {
   position: relative;
 }
 
+.message i {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  font-size:0.9rem;
+  padding: 5px 10px 0 0;
+
+  display: none;
+}
+
 .message span {
   position: absolute;
   bottom: 0;
   right: 0;
 
   font-size:0.6rem;
-  color: grey;
   padding: 0 10px 5px 0;
+}
+
+.message span,
+.message i {
+  color: grey;
 }
 
 .message.sent {
@@ -307,12 +322,40 @@ i {
   justify-content: flex-end;
 }
 
-.message.sent div {
+.message.sent .message-card {
   background-color: #DCF5BF;
 } 
 
-.message.received div {
+.message.received .message-card {
   background-color: white;
+}
+
+.message .message-card:hover i {
+  display: block;
+}
+
+.message .message-options {
+  width: 140px;
+
+  position: absolute;
+  z-index: 999;
+  top: 20px;
+  right: -20px;
+
+  background-color: white;
+  border-radius: 5px;s
+  box-shadow: 0 0 5px grey;
+}
+
+.message-options p {
+  padding: 10px 10px;
+  font-size: 0.8rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.message-options p:hover {
+  background-color: #EAEAEA;
 }
 
 /* Input chat area */

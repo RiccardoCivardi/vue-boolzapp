@@ -113,10 +113,10 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="name">{{contact.name}}</span>
-                  <span class="sending-time">{{contact.messages[contact.messages.length-1].date }}</span>
+                  <span class="sending-time">{{contact.messages.length > 0 ? contact.messages[contact.messages.length-1].date : '' }}</span>
                 </div>
                 
-                <p>{{contact.messages[contact.messages.length-1].message}}</p>
+                <p>{{contact.messages.length > 0 ? contact.messages[contact.messages.length-1].message : '...Non ci sono messaggi!'}}</p>
 
               </div>
 
@@ -165,14 +165,27 @@
 
           <ul>
 
-            <li
-             v-for="message in contacts[activeChat].messages"
+            <li 
+             v-for="(message, index) in contacts[activeChat].messages"
              class="message"
-             :class="{'received': message.status === 'received', 'sent': message.status === 'sent'}"
+             :class="message.status"
              >
-              <div>
+              <div 
+                v-if="message"
+               class="message-card">
                 <p>{{message.message}}</p>
                 <span>{{message.date.substring(11,16)}}</span>
+                <i 
+                 @click="showOptions(index)"
+                 class="fa-solid fa-chevron-down"></i>
+                <div
+                  v-if="message.isHidden"
+                  class="message-options">
+                  <p>Info messaggio</p>
+                  <p
+                   @click="contacts[activeChat].messages.splice(index,1)" 
+                  >Cancella messaggio</p>
+                </div>
               </div>
             </li>
 
