@@ -21,6 +21,9 @@
   
   <!-- VUE JS -->
   <script src="https://unpkg.com/vue@3"></script>
+
+  <!-- LUXON -->
+  <script defer src="https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js"></script>
   
   <!-- SCRIPT JS -->
   <script defer src="js/script.js"></script>
@@ -169,7 +172,7 @@
              >
               <div>
                 <p>{{message.message}}</p>
-                <span>15:30</span>
+                <span>{{message.date.substring(11,16)}}</span>
               </div>
             </li>
 

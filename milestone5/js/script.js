@@ -191,29 +191,38 @@ createApp({
   methods:{
     
     addNewMessage() {
+      
       const message = {
-        date: '10/01/2020 15:50:00',
+        date: this.dateNow(),
         message: this.newMessage,
         status: 'sent'
       }
-      
+
       this.contacts[this.activeChat].messages.push(message);
 
       this.newMessage ='';
 
-      setTimeout(this.addReply, 2000);
+      setTimeout(this.addReply, 5000);
 
     },
 
     addReply(){
       const message = {
-        date: '10/01/2020 15:50:00',
+        date: this.dateNow(),
         message: 'ok',
         status: 'received'
       }
 
       this.contacts[this.activeChat].messages.push(message);
 
+    },
+
+    dateNow() {
+      const DateTime = luxon.DateTime;
+      
+      const now = DateTime.now().toFormat("dd'/'LL'/'y' 'HH':'mm':'ss");
+
+      return now;
     }
     
   },
