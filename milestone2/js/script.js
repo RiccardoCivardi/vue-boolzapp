@@ -6,6 +6,7 @@ createApp({
     return{
 
       pathImg: '../assets/img/avatar',
+      activeChat: 0,
      
       user: {
         name: 'Riccardo',
@@ -186,7 +187,7 @@ createApp({
   },
 
   methods:{
-
+  
   },
 
   mounted(){

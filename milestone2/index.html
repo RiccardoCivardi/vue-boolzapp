@@ -8,7 +8,7 @@
   <!-- FAVICON -->
   <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
-  <!-- FONT AAWESOME -->
+  <!-- FONT AWESOME -->
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css' integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==' crossorigin='anonymous'/>
 
   <!-- GOOGLE FONT -->
@@ -90,7 +90,9 @@
           <ul>
 
             <li
-             v-for="contact in contacts"
+             v-for="(contact, index) in contacts"
+             :class="{'active': index === activeChat}"
+             @click="activeChat = index"
              class="chat-info d-flex">
 
               <div class="chat-avatar d-flex justify-content-center align-items-center">
@@ -128,12 +130,12 @@
           <div class="user-data d-flex align-items-center">
 
             <div class="profile-img">
-              <img :src="pathImg + user.avatar + '.jpg'" :alt="user.name + ' ' + 'picture'">
+              <img :src="pathImg + contacts[activeChat].avatar + '.jpg'" :alt="contacts[activeChat].name + ' ' + 'picture'">
             </div>
             
             <div>
 
-              <span>{{user.name}}</span>
+              <span>{{contacts[activeChat].name}}</span>
               <p>Ultimo accesso oggi alle 12:00</p>
 
             </div>
@@ -155,16 +157,13 @@
 
           <ul>
 
-            <li class="message sent">
+            <li
+             v-for="message in contacts[activeChat].messages"
+             class="message"
+             :class="{'received': message.status === 'received', 'sent': message.status === 'sent'}"
+             >
               <div>
-                <p>Hai portato a spasso il cane?</p>
-                <span>15:30</span>
-              </div>
-            </li>
-
-            <li class="message received">
-              <div>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi odio eveniet nesciunt voluptatibus minima? Nulla error sit rem cum enim!</p>
+                <p>{{message.message}}</p>
                 <span>15:30</span>
               </div>
             </li>

@@ -206,7 +206,7 @@ i {
   background-color: #f3f3f3;
 }
 
-.list-chats li.active {
+.chat-info.active {
   background-color: #EAEAEA;
 }
 
