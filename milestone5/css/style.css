@@ -192,6 +192,7 @@ i {
 .list-chats {
   height: calc( 100% - 40px - 80px - 95px);
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .list-chats ul {
@@ -270,12 +271,10 @@ i {
   height: calc(100% - 70px - 70px);
 
   background-image: url('../../assets/img/mine.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 
   padding: 50px 80px 0;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .message {

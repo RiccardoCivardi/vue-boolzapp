@@ -23,7 +23,7 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <!-- LUXON -->
-  <script defer src="https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js"></script>
   
   <!-- SCRIPT JS -->
   <script defer src="js/script.js"></script>
@@ -113,7 +113,7 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="name">{{contact.name}}</span>
-                  <span class="sending-time">{{contact.messages.length > 0 ? contact.messages[contact.messages.length-1].date : '' }}</span>
+                  <span class="sending-time">{{contact.messages.length > 0 ? contact.messages[contact.messages.length-1].date.substring(0,16) : '' }}</span>
                 </div>
                 
                 <p>{{contact.messages.length > 0 ? contact.messages[contact.messages.length-1].message : '...Non ci sono messaggi!'}}</p>
