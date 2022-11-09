@@ -9,6 +9,7 @@ createApp({
       activeChat: 0,
       newMessage: '',
       search: '',
+      isWritingText : false,
      
       user: {
         name: 'Riccardo',
@@ -202,10 +203,22 @@ createApp({
 
       this.newMessage ='';
 
-      setTimeout(this.addReply, 1000);
-
       setTimeout(this.autoScroll, 100);
 
+      setTimeout(this.isWriting, 1000);
+
+      setTimeout(() => {
+
+        this.contacts[this.activeChat].isWritingMessage = true;
+
+      }, 1000)
+
+      setTimeout(this.addReply, 4000);
+
+    },
+
+    isWriting() {
+      this.isWritingText = !this.isWritingText
     },
 
     addReply(){
@@ -215,11 +228,14 @@ createApp({
         status: 'received'
       }
 
-      this.contacts[this.activeChat].messages.push(message);
+      this.isWriting();
 
+      this.contacts[this.activeChat].isWritingMessage = false;
+
+      this.contacts[this.activeChat].messages.push(message);
+    
       setTimeout(this.autoScroll, 100);
       
-
     },
 
     dateNow() {
@@ -231,13 +247,33 @@ createApp({
     },
 
     showOptions(index) {
-      
-      if(!this.contacts[this.activeChat].messages[index].isHidden) {
-        
-        this.contacts[this.activeChat].messages[index].isHidden = true;
-      } else {
-        this.contacts[this.activeChat].messages[index].isHidden =! this.contacts[this.activeChat].messages[index].isHidden
+
+      this.contacts.forEach(contact => {
+
+        contact.messages.forEach(mess => {
+
+          if(!mess.isHidden) message.isHidden =  false;
+
+          
+
+
+        })
+
+
+
+
+      })
+
+      const message = this.contacts[this.activeChat].messages[index];
+
+      if(!message.isHidden) message.isHidden =  true;
+      else {
+
+        message.isHidden = !message.isHidden;
+
       }
+      
+      
     },
 
     autoScroll() {
@@ -245,6 +281,61 @@ createApp({
       
       el.scrollTop = el.scrollHeight;
      
+    },
+
+    showLastDateMessageSent() {
+
+      let showDateMessage = '';
+
+      const arrayMessages = this.contacts[this.activeChat].messages;
+
+      arrayMessages.forEach(message => {
+     
+        if(message.status === 'received') {
+
+          showDateMessage = message.date;
+ 
+        }
+        
+      })
+
+      showDateMessage = 'Ultimo accesso: ' + showDateMessage.substring(0,10) + ' alle ' + showDateMessage.substring(11,16);
+
+      return showDateMessage;
+    },
+
+    openChat() {
+      
+      const newArrayMessage = [];
+
+      let newIndex, newContact;
+
+      this.contacts.forEach((contact, index) => {
+
+        if(contact.name.toLowerCase().includes(this.search.toLowerCase())) {
+
+          newArrayMessage.push(contact);
+
+          newIndex = index;
+
+        }
+
+      })
+
+      if(newArrayMessage.length === 1) {
+
+        this.search = '';
+
+        newContact = this.contacts[newIndex];
+
+        this.contacts.splice(newIndex, 1);
+
+        this.contacts.unshift(newContact);
+
+        this.activeChat = 0;
+
+      }
+
     }
 
   },
