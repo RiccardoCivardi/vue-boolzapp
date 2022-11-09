@@ -203,6 +203,8 @@ createApp({
 
       this.newMessage ='';
 
+      this.addFirstChat();
+
       setTimeout(this.autoScroll, 100);
 
       setTimeout(this.isWriting, 1000);
@@ -214,6 +216,18 @@ createApp({
       }, 1000)
 
       setTimeout(this.addReply, 4000);
+
+    },
+
+    addFirstChat() {
+
+      const newContact = this.contacts[this.activeChat];
+
+      this.contacts.splice(this.activeChat, 1);
+
+      this.activeChat = 0;
+
+      this.contacts.unshift(newContact);
 
     },
 
@@ -279,8 +293,6 @@ createApp({
 
     hideAll() {
 
-      console.log('click');
-
       this.contacts.forEach(contact => {
 
         contact.messages.forEach(mess => {
@@ -313,19 +325,15 @@ createApp({
 
       let showDateMessage = '';
 
-      const arrayMessages = this.contacts[this.activeChat].messages;
-
-      arrayMessages.forEach(message => {
+      this.contacts[this.activeChat].messages.forEach(message => {
      
         if(message.status === 'received') {
 
-          showDateMessage = message.date;
+          showDateMessage = 'Ultimo accesso: ' + message.date.substring(0,10) + ' alle ' + message.date.substring(11,16);
  
-        }
-        
-      })
+        } else showDateMessage = '';
 
-      showDateMessage = 'Ultimo accesso: ' + showDateMessage.substring(0,10) + ' alle ' + showDateMessage.substring(11,16);
+      })
 
       return showDateMessage;
     },

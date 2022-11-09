@@ -111,6 +111,10 @@ i {
   cursor: pointer;
 }
 
+.name-user {
+  font-weight: bold;
+}
+
 .user-data span {
   cursor: pointer;
 }

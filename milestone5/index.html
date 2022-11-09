@@ -51,7 +51,7 @@
               <img :src="pathImg + user.avatar + '.jpg'" :alt="user.name + ' ' + 'picture'">
             </div>
             
-            <span>{{user.name}}</span>
+            <span class="name-user">{{user.name}}</span>
             
           </div>
 
@@ -124,7 +124,7 @@
                 
                 <p
                   v-if="!contact.isWritingMessage"
-                >{{contact.messages.length ? contact.messages[contact.messages.length-1].message : '...Non ci sono messaggi!'}}</p>
+                >{{contact.messages.length ? contact.messages[contact.messages.length-1].message : 'Non ci sono messaggi...'}}</p>
                 <p v-else>Sta scrivendo...</p>
 
               </div>
