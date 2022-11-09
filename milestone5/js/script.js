@@ -241,7 +241,7 @@ createApp({
         message: 'ok',
         status: 'received'
       }
-
+      
       this.isWriting();
 
       this.contacts[this.activeChat].isWritingMessage = false;
@@ -321,21 +321,34 @@ createApp({
      
     },
 
-    showLastDateMessageSent() {
+    showLastAccess() {
 
-      let showDateMessage = '';
+      let showDateMessage = this.contacts[this.activeChat].lastAccess; 
 
       this.contacts[this.activeChat].messages.forEach(message => {
-     
+        
         if(message.status === 'received') {
-
-          showDateMessage = 'Ultimo accesso: ' + message.date.substring(0,10) + ' alle ' + message.date.substring(11,16);
- 
-        } else showDateMessage = '';
-
+   
+          showDateMessage = this.getDateMessage(message.date);
+  
+          this.contacts[this.activeChat].lastAccess = showDateMessage;
+  
+        } 
+  
       })
 
       return showDateMessage;
+      
+    },
+
+
+
+
+    getDateMessage(string){
+
+      const dateString = 'Ultimo accesso: ' + string.substring(0,10) + ' alle ' + string.substring(11,16);
+
+      return dateString;
     },
 
     openChat() {
@@ -375,6 +388,16 @@ createApp({
   },
 
   mounted(){
+
+    this.contacts[this.activeChat].messages.forEach(message => {
+        
+      if(message.status === 'received') {
+
+        this.contacts[this.activeChat].lastAccess = this.getDateMessage(message.date);
+
+      }
+
+    })
     
   }
 
