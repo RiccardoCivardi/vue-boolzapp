@@ -35,7 +35,9 @@
 
   <div id="app" class="d-flex justify-content-center align-items-center">
 
-    <div class="application d-flex">
+    <div 
+     @click="hideAll()"
+     class="application d-flex">
     
       <!-- USER AREA -->
       <div class="user-area">
@@ -101,7 +103,7 @@
              v-for="(contact, index) in contacts"
              v-show="contact.name.toLowerCase().includes(search.toLowerCase())"
              :class="{'active': index === activeChat}"
-             @click="activeChat = index"
+             @click.stop="activeChat = index"
              class="chat-info d-flex">
 
               <div class="chat-avatar d-flex justify-content-center align-items-center">
@@ -117,13 +119,12 @@
                   <span 
                     v-if="!contact.isWritingMessage"
                     class="sending-time">
-                  {{contact.messages.length > 0 ? contact.messages[contact.messages.length-1].date.substring(0,16) : '' }}</span>
-                  <span></span>
+                  {{contact.messages.length ? contact.messages[contact.messages.length-1].date.substring(0,16) : '' }}</span>
                 </div>
                 
                 <p
                   v-if="!contact.isWritingMessage"
-                >{{contact.messages.length > 0 ? contact.messages[contact.messages.length-1].message : '...Non ci sono messaggi!'}}</p>
+                >{{contact.messages.length ? contact.messages[contact.messages.length-1].message : '...Non ci sono messaggi!'}}</p>
                 <p v-else>Sta scrivendo...</p>
 
               </div>
@@ -187,14 +188,14 @@
                 <p>{{message.message}}</p>
                 <span>{{message.date.substring(11,16)}}</span>
                 <i 
-                 @click="showOptions(index)"
+                 @click.stop="showOptions(index)"
                  class="fa-solid fa-chevron-down"></i>
                 <div
-                  v-if="message.isHidden"
+                  v-if="message.isHidden === 'show'"
                   class="message-options">
                   <p>Info messaggio</p>
                   <p
-                   @click="contacts[activeChat].messages.splice(index,1)" 
+                   @click.stop="contacts[activeChat].messages.splice(index,1)" 
                   >Cancella messaggio</p>
                 </div>
               </div>

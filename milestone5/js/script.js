@@ -248,32 +248,58 @@ createApp({
 
     showOptions(index) {
 
+      const message = this.contacts[this.activeChat].messages[index];
+
+      if(!message.isHidden) message.isHidden = 'show';
+      else if(message.isHidden === 'hide') message.isHidden = 'show';
+      else message.isHidden = 'hide';
+      
       this.contacts.forEach(contact => {
 
         contact.messages.forEach(mess => {
 
-          if(!mess.isHidden) message.isHidden =  false;
+          if(!mess.isHidden)  {
+            
+            mess.isHidden =  'hide';
 
-          
+          }
+          else if(mess.isHidden === 'show') {
+            
+            mess.isHidden = 'hide';
 
+            if( message.isHidden ='show') message.isHidden ='show';
+           
+          } 
 
         })
 
-
-
-
       })
 
-      const message = this.contacts[this.activeChat].messages[index];
+    },
 
-      if(!message.isHidden) message.isHidden =  true;
-      else {
+    hideAll() {
 
-        message.isHidden = !message.isHidden;
+      console.log('click');
 
-      }
+      this.contacts.forEach(contact => {
+
+        contact.messages.forEach(mess => {
+
+          if(!mess.isHidden)  {
+            
+            mess.isHidden =  'hide';
+
+          }
+          else if(mess.isHidden === 'show') {
+            
+            mess.isHidden = 'hide';
+          
+          }
+        
+        })
       
-      
+      })    
+
     },
 
     autoScroll() {
